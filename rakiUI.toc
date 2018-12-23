@@ -15,6 +15,7 @@ Util\UnitFrameBuilder.lua
 ## Load UI
 UI\UI.lua
 UI\MicroBar\MicroBar.lua
+UI\Minimap\Minimap.lua
 UI\UnitFrames\PlayerUnitFrame.lua
 UI\UnitFrames\TargetUnitFrame.lua
 UI\UnitFrames\PetUnitFrame.lua
