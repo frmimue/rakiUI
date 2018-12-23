@@ -1,0 +1,5 @@
+## Interface: 70300
+## Title: rakiUI
+## Author: Frank Müller
+## Version: 0.1
+## SavedVariables:
