@@ -10,7 +10,7 @@ Core\Backdrop.lua
 
 ## Load Util
 Util\Util.lua
-Util\FrameBuilder.lua
+Util\UnitFrameBuilder.lua
 
 ## Load UI
 UI\UI.lua
