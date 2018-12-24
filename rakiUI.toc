@@ -21,3 +21,7 @@ UI\UnitFrames\PlayerUnitFrame.lua
 UI\UnitFrames\TargetUnitFrame.lua
 UI\UnitFrames\PetUnitFrame.lua
 UI\UnitFrames\TargetTargetUnitFrame.lua
+
+## Load Old Stuff
+CastBar.lua
+PowerBar.lua
