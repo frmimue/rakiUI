@@ -7,4 +7,10 @@ end
 local ChatBorderFrame = CreateFrame("Frame", nil, UIParent)
 ChatBorderFrame:SetPoint("TOPLEFT", ChatFrame1Background, "TOPLEFT", -4, 4)
 ChatBorderFrame:SetPoint("BOTTOMRIGHT", ChatFrame1Background, "BOTTOMRIGHT", 4, -4)
-ChatBorderFrame:SetBackdrop(RUI.EdgeTable["UI-DialogBox-Border"])
+ChatBorderFrame:SetBackdrop(RUI.EdgeTable["UI-Tooltip-Border"])
+
+
+
+ChatFrame1EditBoxLeft:Hide()
+ChatFrame1EditBoxMid:Hide()
+ChatFrame1EditBoxRight:Hide()
