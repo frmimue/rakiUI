@@ -17,6 +17,7 @@ UI\UI.lua
 UI\ChatFrame\ChatFrame.lua
 UI\MicroBar\MicroBar.lua
 UI\Minimap\Minimap.lua
+UI\UnitFrames\BossUnitFrame.lua
 UI\UnitFrames\PlayerUnitFrame.lua
 UI\UnitFrames\TargetUnitFrame.lua
 UI\UnitFrames\PetUnitFrame.lua

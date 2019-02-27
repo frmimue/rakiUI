@@ -118,6 +118,11 @@ function RUI.Util.CreateUnitFrame (unitID, powerBarHeight)
 		UnitFrame:Update()
 	end
 
+	function UnitFrame.Events:UNIT_NAME_UPDATE(...)
+		if ... ~= unitID then return end
+		self.HealthBar.TextCenter:SetText(UnitName(unitID))
+	end
+
 	UnitFrame:SetScript("OnEvent", function(self, event, ...)
 		self.Events[event](self, ...);
 	end);
@@ -194,13 +199,7 @@ function RUI.Util.CreatePetUnitFrame(powerBarHeight)
 		PetUnitFrame:Update()
 	end
 
-	function PetUnitFrame.Events:UNIT_NAME_UPDATE(...)
-		if ... ~= "pet" then return end
-		PetUnitFrame:Update()
-	end
-
 	PetUnitFrame:RegisterEvent("UNIT_PET")
-	PetUnitFrame:RegisterEvent("UNIT_NAME_UPDATE")
 
 	return PetUnitFrame
 end
@@ -223,7 +222,35 @@ function RUI.Util.CreateTargetTargetUnitFrame(powerBarHeight)
 		TargetTargetUnitFrame:Update()
 	end
 
+	function TargetTargetUnitFrame.Events:PLAYER_TARGET_CHANGED(...)
+		TargetTargetUnitFrame:Update()
+	end
+
 	TargetTargetUnitFrame:RegisterEvent("UNIT_TARGET")
+
+	TargetTargetUnitFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
 
 	return TargetTargetUnitFrame
 end
+
+function RUI.Util.CreateBossUnitFrame(bossN, powerBarHeight)
+	local BossUnitFrame = RUI.Util.CreateUnitFrame(bossN, powerBarHeight)
+
+	BossUnitFrame.BaseUpdate = BossUnitFrame.Update
+	
+	function BossUnitFrame:Update()
+		if(not UnitExists(bossN)) then
+			self:Hide()
+		end
+		self:BaseUpdate()
+		self:Show()
+	end
+
+	function BossUnitFrame.Events:INSTANCE_ENCOUNTER_ENGAGE_UNIT(...)
+		BossUnitFrame:Update()
+	end
+
+	BossUnitFrame:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+
+	return BossUnitFrame
+end 
