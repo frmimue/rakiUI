@@ -65,19 +65,25 @@ function RUI.Util.CreateUnitFrame (unitID, powerBarHeight)
 	function UnitFrame.HealthBar:Update()
 		local hpValue = UnitHealth(unitID)
 		local hpValueMax = UnitHealthMax(unitID);
-		local hpValueNormalized = (hpValue / hpValueMax);
-		local hpValuePercent = math.ceil(hpValueNormalized * 100);
-		self:SetValue(hpValuePercent)
-		self.TextLeft:SetText(hpValuePercent .. "%")
-		self.TextRight:SetText(AbbreviateLargeNumbers(hpValue))
-		self:SetStatusBarColor(RUI.Math.Lerp3({1.0, 0.0, 0.0}, {1.0, 1.0, 0.0}, {0.5, 0.5, 0.5}, hpValueNormalized));
+		if (hpValueMax > 0) then
+			local hpValueNormalized = (hpValue / hpValueMax);
+			local hpValuePercent = hpValueNormalized * 100;
+			self:SetValue(hpValuePercent)
+			self.TextLeft:SetText(string.format("%.1f%%", hpValuePercent))
+			self.TextRight:SetText(AbbreviateLargeNumbers(hpValue))
+			self:SetStatusBarColor(RUI.Math.Lerp3({1.0, 0.0, 0.0}, {1.0, 1.0, 0.0}, {0.5, 0.5, 0.5}, hpValueNormalized));
+		else
+			self:SetValue(0)
+			self.TextLeft:SetText("")
+			self.TextRight:SetText("")
+		end
 	end
 
 	function UnitFrame.PowerBar:Update()
 		local powerValue = UnitPower(unitID)
 		local powerValueMax = UnitPowerMax(unitID)
-		local powerValuePercent = math.ceil((powerValue / powerValueMax) * 100);
 		if (powerValueMax > 0) then 
+			local powerValuePercent = math.ceil((powerValue / powerValueMax) * 100);
 			self:SetValue(powerValuePercent)
 			self.TextLeft:SetText(powerValuePercent .. "%")
 			self.TextRight:SetText(AbbreviateLargeNumbers(powerValue))
@@ -103,6 +109,11 @@ function RUI.Util.CreateUnitFrame (unitID, powerBarHeight)
 	end
 
 	UnitFrame.Events = {}
+
+	function UnitFrame.Events:UNIT_HEALTH(...)
+		if ... ~= unitID then return end
+		UnitFrame.HealthBar:Update()
+	end	
 
 	function UnitFrame.Events:UNIT_HEALTH_FREQUENT(...)
 		if ... ~= unitID then return end

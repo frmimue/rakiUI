@@ -14,7 +14,7 @@ Boss5TargetFrame:Hide();
 RUI.UI.Boss1UnitFrame = RUI.Util.CreateBossUnitFrame("boss1", 11)
 RUI.UI.Boss1UnitFrame:SetWidth(200)
 RUI.UI.Boss1UnitFrame:SetHeight(60)
-RUI.UI.Boss1UnitFrame:SetPoint("CENTER",UIParent,"CENTER", 800  , 250)
+RUI.UI.Boss1UnitFrame:SetPoint("CENTER",UIParent,"CENTER", 650, 250)
 
 RUI.UI.Boss2UnitFrame = RUI.Util.CreateBossUnitFrame("boss2", 11)
 RUI.UI.Boss2UnitFrame:SetWidth(200)

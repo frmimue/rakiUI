@@ -43,9 +43,6 @@ Spark:SetSize(15, 50)
 Spark:SetBlendMode('ADD')
 Spark:SetTexture([[Interface\CastingBar\UI-CastingBar-Spark]])
 
-local timeSinceLastUpdate = 0
-local isCasting = false
-local lineID
 local fadeout = nil
 
 local function onUpdateCast(self,elapsed)
@@ -97,21 +94,18 @@ function events:UNIT_SPELLCAST_START(...)
     CastBarFrame:Show()
 end
 function events:UNIT_SPELLCAST_STOP(...)
-    a, b, c, d = ...
+    a, b, c = ...
     if a ~= "player" then return end
-    if d ~= lineID then return end
     fadeout = 0.25
 end
 function events:UNIT_SPELLCAST_INTERRUPTED(...)
-    a, b, c, d = ...
+    a, b, c = ...
     if a ~= "player" then return end
-    if d ~= lineID then return end
     CastBar:SetStatusBarColor(1,0,0)
 end
 function events:UNIT_SPELLCAST_SUCCEEDED(...)
-    a, b, c, d = ...
+    a, b, c = ...
     if a ~= "player" then return end
-    if d ~= lineID then return end
     CastBar:SetValue(select(2, CastBar:GetMinMaxValues()))
     CastBar:SetStatusBarColor(0,1,0)
 end
@@ -130,16 +124,15 @@ function events:UNIT_SPELLCAST_CHANNEL_START(...)
     CastBarFrame:Show()
 end
 function events:UNIT_SPELLCAST_CHANNEL_STOP(...)
-    a, b, c, d = ...
+    a, b, c = ...
     if a ~= "player" then return end
-    if d ~= lineID then return end
     fadeout = 0.25
 end
 
 
 CastBarFrame:SetScript("OnEvent", function(self, event, ...)
- events[event](self, ...);
+    events[event](self, ...);
 end);
 for k, v in pairs(events) do
- CastBarFrame:RegisterEvent(k);
+    CastBarFrame:RegisterEvent(k);
 end
