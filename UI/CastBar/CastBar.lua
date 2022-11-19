@@ -28,7 +28,7 @@ CastBar:SetStatusBarColor(1,1,0)
 CastBar:SetFrameLevel(1)
 
 local CastBarTextLeft = CastBar:CreateFontString(nil, OVERLAY)
-CastBarTextLeft:SetFont("Fonts\\FRIZQT__.TTF", 18, "OUTLINE")
+CastBarTextLeft:SetFont("Fonts\\ARIALN.TTF", 18, "OUTLINE")
 CastBarTextLeft:SetPoint("CENTER", CastBar, "CENTER", 0, -1)
 
 local CastBarFrameBorder = CreateFrame("Frame", nil, CastBarFrame, BackdropTemplateMixin and "BackdropTemplate")
