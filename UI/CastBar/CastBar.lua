@@ -1,7 +1,7 @@
 local name, RUI = ...
 
-CastingBarFrame:SetScript("OnEvent", nil);
-CastingBarFrame:Hide()
+PlayerCastingBarFrame:SetScript("OnEvent", nil);
+PlayerCastingBarFrame:Hide()
 
 local CastBarFrame = CreateFrame("Frame", nil, UIParent)
 CastBarFrame:SetWidth(216)
@@ -9,7 +9,7 @@ CastBarFrame:SetHeight(25)
 CastBarFrame:SetPoint("CENTER",UIParent,"CENTER", 0, -322)
 CastBarFrame:Hide()
 
-local CastBarFrameBackground = CreateFrame("Frame", nil, CastBarFrame)
+local CastBarFrameBackground = CreateFrame("Frame", nil, CastBarFrame, BackdropTemplateMixin and "BackdropTemplate")
 CastBarFrameBackground:SetBackdrop(RUI.BackgroundTable["UI-DialogBox-Background"])
 CastBarFrameBackground:SetWidth(488)
 CastBarFrameBackground:SetHeight(34)
@@ -31,7 +31,7 @@ local CastBarTextLeft = CastBar:CreateFontString(nil, OVERLAY)
 CastBarTextLeft:SetFont("Fonts\\FRIZQT__.TTF", 18, "OUTLINE")
 CastBarTextLeft:SetPoint("CENTER", CastBar, "CENTER", 0, -1)
 
-local CastBarFrameBorder = CreateFrame("Frame", nil, CastBarFrame)
+local CastBarFrameBorder = CreateFrame("Frame", nil, CastBarFrame, BackdropTemplateMixin and "BackdropTemplate")
 CastBarFrameBorder:SetBackdrop(RUI.EdgeTable["UI-Tooltip-Border"])
 CastBarFrameBorder:SetWidth(488)
 CastBarFrameBorder:SetHeight(34)

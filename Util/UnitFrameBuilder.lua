@@ -2,14 +2,18 @@ local name, RUI = ...
 
 function RUI.Util.CreateUnitFrame (unitID, powerBarHeight)
     local UnitFrame = CreateFrame("Button", nil, UIParent, "SecureUnitButtonTemplate")
-	UnitFrame:SetBackdrop(RUI.BackgroundTable["UI-DialogBox-Background"])
+	--UnitFrame:SetBackdrop(RUI.BackgroundTable["UI-DialogBox-Background"])
 	UnitFrame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 	UnitFrame:SetAttribute("type1", "target")
 	UnitFrame:SetAttribute("unit", unitID)
 	UnitFrame:SetAttribute("type2", "togglemenu")
 	RegisterUnitWatch(UnitFrame)
 
-	UnitFrame.Border = CreateFrame("Frame", nil, UnitFrame)
+	UnitFrame.Background = CreateFrame("Frame", nil, UnitFrame, BackdropTemplateMixin and "BackdropTemplate")
+	UnitFrame.Background:SetAllPoints(UnitFrame)
+	UnitFrame.Background:SetBackdrop(RUI.BackgroundTable["UI-DialogBox-Background"])
+
+	UnitFrame.Border = CreateFrame("Frame", nil, UnitFrame, BackdropTemplateMixin and "BackdropTemplate")
 	UnitFrame.Border:SetAllPoints(UnitFrame)
 	UnitFrame.Border:SetBackdrop(RUI.EdgeTable["UI-Tooltip-Border"])
 	UnitFrame.Border:SetFrameLevel(UnitFrame:GetFrameLevel() + 2)
@@ -114,11 +118,6 @@ function RUI.Util.CreateUnitFrame (unitID, powerBarHeight)
 		if ... ~= unitID then return end
 		UnitFrame.HealthBar:Update()
 	end	
-
-	function UnitFrame.Events:UNIT_HEALTH_FREQUENT(...)
-		if ... ~= unitID then return end
-		UnitFrame.HealthBar:Update()
-	end
 
 	function UnitFrame.Events:UNIT_POWER_FREQUENT(...)
 		if ... ~= unitID then return end

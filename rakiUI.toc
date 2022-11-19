@@ -1,7 +1,7 @@
-## Interface: 80205
+## Interface: 100002
 ## Title: rakiUI
 ## Author: Frank Müller
-## Version: 0.1
+## Version: 0.2
 ## SavedVariables:
 
 ## Load Core
@@ -14,10 +14,9 @@ Util\UnitFrameBuilder.lua
 
 ## Load UI
 UI\UI.lua
-UI\ChatFrame\ChatFrame.lua
 UI\MicroBar\MicroBar.lua
-UI\Minimap\Minimap.lua
-##UI\PowerBar\PowerBar.lua
+UI\PowerBar\PowerBar.lua
+UI\CastBar\CastBar.lua
 UI\UnitFrames\BossUnitFrame.lua
 UI\UnitFrames\PlayerUnitFrame.lua
 UI\UnitFrames\TargetUnitFrame.lua
@@ -25,5 +24,8 @@ UI\UnitFrames\PetUnitFrame.lua
 UI\UnitFrames\TargetTargetUnitFrame.lua
 
 ## Load Old Stuff
-CastBar.lua
-PowerBar.lua
+##CastBar.lua
+##PowerBar.lua
+
+##UI\ChatFrame\ChatFrame.lua
+##UI\Minimap\Minimap.lua
