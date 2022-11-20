@@ -1,7 +1,7 @@
 local name, RUI = ...
 
--- PlayerCastingBarFrame:SetScript("OnEvent", nil);
--- PlayerCastingBarFrame:Hide()
+PlayerCastingBarFrame:SetScript("OnEvent", nil);
+PlayerCastingBarFrame:Hide()
 
 PlayerCastingBarFrame:SetWidth(488)
 PlayerCastingBarFrame:SetHeight(34)

@@ -8,6 +8,7 @@ PowerBarFrame:SetPoint("TOP",UIParent,"CENTER", 0, -260)
 PowerBarFrame.Background = CreateFrame("Frame", nil, PowerBarFrame, BackdropTemplateMixin and "BackdropTemplate")
 PowerBarFrame.Background:SetAllPoints(PowerBarFrame)
 PowerBarFrame.Background:SetBackdrop(RUI.BackgroundTable["UI-DialogBox-Background"])
+PowerBarFrame.Background:SetFrameLevel(0)
 
 
 local PowerBar = CreateFrame("StatusBar", nil, PowerBarFrame)
