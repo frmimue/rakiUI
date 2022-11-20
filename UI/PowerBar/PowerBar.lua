@@ -125,6 +125,34 @@ elseif (playerClass == 5) then
     MyPlayerFrameSeperator3:SetHeight(26)
     MyPlayerFrameSeperator3:SetPoint("CENTER", PowerBar, "LEFT", 4 *(PowerBar:GetWidth() / 5) + 3, 0)
 
+  elseif (playerClass == 13) then
+    highPrecision = false
+    powerTypeIndex = 19
+
+    local MyPlayerFrameSeperator0 =  PowerBar:CreateTexture(nil, "OVERLAY")
+    MyPlayerFrameSeperator0:SetTexture("Interface\\RAIDFRAME\\Raid-VSeparator")
+    MyPlayerFrameSeperator0:SetWidth(8)
+    MyPlayerFrameSeperator0:SetHeight(26)
+    MyPlayerFrameSeperator0:SetPoint("CENTER", PowerBar, "LEFT", 1 *(PowerBar:GetWidth() / 5) + 3, 0)
+    
+    local MyPlayerFrameSeperator1 =  PowerBar:CreateTexture(nil, "OVERLAY")
+    MyPlayerFrameSeperator1:SetTexture("Interface\\RAIDFRAME\\Raid-VSeparator")
+    MyPlayerFrameSeperator1:SetWidth(8)
+    MyPlayerFrameSeperator1:SetHeight(26)
+    MyPlayerFrameSeperator1:SetPoint("CENTER", PowerBar, "LEFT", 2 *(PowerBar:GetWidth() / 5) + 3, 0)
+    
+    local MyPlayerFrameSeperator2 =  PowerBar:CreateTexture(nil, "OVERLAY")
+    MyPlayerFrameSeperator2:SetTexture("Interface\\RAIDFRAME\\Raid-VSeparator")
+    MyPlayerFrameSeperator2:SetWidth(8)
+    MyPlayerFrameSeperator2:SetHeight(26)
+    MyPlayerFrameSeperator2:SetPoint("CENTER", PowerBar, "LEFT", 3 *(PowerBar:GetWidth() / 5) + 3, 0)
+    
+    local MyPlayerFrameSeperator3 =  PowerBar:CreateTexture(nil, "OVERLAY")
+    MyPlayerFrameSeperator3:SetTexture("Interface\\RAIDFRAME\\Raid-VSeparator")
+    MyPlayerFrameSeperator3:SetWidth(8)
+    MyPlayerFrameSeperator3:SetHeight(26)
+    MyPlayerFrameSeperator3:SetPoint("CENTER", PowerBar, "LEFT", 4 *(PowerBar:GetWidth() / 5) + 3, 0)
+
   else
     PowerBarFrame:Hide()
   end
@@ -140,6 +168,8 @@ elseif (playerClass == 5) then
 
   if(powerTypeIndex == 4) then
     PowerBar:SetStatusBarColor(1, 0, 0, 1.0)
+  elseif powerTypeIndex == 19 then
+    PowerBar:SetStatusBarColor(0.2, 0.58, 0.5, 1.0)
   end
 
   PowerBar:SetMinMaxValues(0, UnitPowerMax("player", powerTypeIndex, highPrecision))
