@@ -47,6 +47,10 @@ MainMenuMicroButton:SetParent(RUI.MicroButtonBar)
 MainMenuMicroButton:ClearAllPoints()
 MainMenuMicroButton:SetPoint("BOTTOMLEFT", EJMicroButton, "BOTTOMRIGHT", 1, 0)
 
+QueueStatusButton:SetParent(RUI.MicroButtonBar)
+QueueStatusButton:ClearAllPoints()
+QueueStatusButton:SetPoint("LEFT", MainMenuMicroButton, "RIGHT", 1, 0)
+
 MicroButtonAndBagsBar:Hide()
 
 -- RUI.MicroButtonBar.Background = CreateFrame("Frame", nil, RUI.MicroButtonBar, BackdropTemplateMixin and "BackdropTemplate")

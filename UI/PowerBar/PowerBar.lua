@@ -126,7 +126,7 @@ elseif (playerClass == 5) then
     MyPlayerFrameSeperator3:SetPoint("CENTER", PowerBar, "LEFT", 4 *(PowerBar:GetWidth() / 5) + 3, 0)
 
   elseif (playerClass == 13) then
-    highPrecision = false
+    highPrecision = true
     powerTypeIndex = 19
 
     local MyPlayerFrameSeperator0 =  PowerBar:CreateTexture(nil, "OVERLAY")
