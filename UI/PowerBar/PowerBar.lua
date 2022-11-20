@@ -5,7 +5,7 @@ PowerBarFrame:SetWidth(488)
 PowerBarFrame:SetHeight(34)
 PowerBarFrame:SetPoint("TOP",UIParent,"CENTER", 0, -260)
 
-PowerBarFrame.Background = CreateFrame("Frame", nil, UIParent, BackdropTemplateMixin and "BackdropTemplate")
+PowerBarFrame.Background = CreateFrame("Frame", nil, PowerBarFrame, BackdropTemplateMixin and "BackdropTemplate")
 PowerBarFrame.Background:SetAllPoints(PowerBarFrame)
 PowerBarFrame.Background:SetBackdrop(RUI.BackgroundTable["UI-DialogBox-Background"])
 

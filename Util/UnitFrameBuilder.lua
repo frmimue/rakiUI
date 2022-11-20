@@ -1,6 +1,6 @@
 local name, RUI = ...
 
-function RUI.Util.CreateUnitFrame (unitID, powerBarHeight)
+function RUI.Util.CreateUnitFrame (unitID, powerBarHeight, powerBarTypeOverride)
     local UnitFrame = CreateFrame("Button", nil, UIParent, "SecureUnitButtonTemplate")
 	--UnitFrame:SetBackdrop(RUI.BackgroundTable["UI-DialogBox-Background"])
 	UnitFrame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
@@ -84,17 +84,22 @@ function RUI.Util.CreateUnitFrame (unitID, powerBarHeight)
 	end
 
 	function UnitFrame.PowerBar:Update()
-		local powerValue = UnitPower(unitID)
-		local powerValueMax = UnitPowerMax(unitID)
+		self.powerType = 0
+		self.powerToken = "MANA"
+		if powerBarTypeOverride == nil then
+			local powerType, powerToken, r, g, b = UnitPowerType(unitID)
+			self.powerType = powerType
+			self.powerToken = powerToken
+		end
+		local powerValue = UnitPower(unitID, self.powerType)
+		local powerValueMax = UnitPowerMax(unitID, self.powerType)
 		if (powerValueMax > 0) then 
 			local powerValuePercent = math.ceil((powerValue / powerValueMax) * 100);
 			self:SetValue(powerValuePercent)
 			self.TextLeft:SetText(powerValuePercent .. "%")
 			self.TextRight:SetText(AbbreviateLargeNumbers(powerValue))
-			local l,powerToken, r, g, b = UnitPowerType(unitID);
-			local l,powerToken, r, g, b = UnitPowerType(unitID);
 				if r == nil then
-					local info = PowerBarColor[powerToken];
+					local info = PowerBarColor[self.powerToken];
 					self:SetStatusBarColor(info.r, info.g, info.b)
 				else
 					self:SetStatusBarColor(r, b, g)
@@ -145,7 +150,15 @@ function RUI.Util.CreateUnitFrame (unitID, powerBarHeight)
 end
 
 function RUI.Util.CreatePlayerUnitFrame(powerBarHeight)
-	local PlayerUnitFrame = RUI.Util.CreateUnitFrame("player", powerBarHeight)
+
+	local PlayerUnitFrame = nil
+
+	local _, _, playerClass = UnitClass("player");
+	if playerClass == 5 then
+		PlayerUnitFrame = RUI.Util.CreateUnitFrame("player", powerBarHeight, true)
+	else
+		PlayerUnitFrame = RUI.Util.CreateUnitFrame("player", powerBarHeight)
+	end
 
 	PlayerUnitFrame.HealthBar.CombatIcon = PlayerUnitFrame.HealthBar:CreateTexture()
 	PlayerUnitFrame.HealthBar.CombatIcon:SetWidth(32)
