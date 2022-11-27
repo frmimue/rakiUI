@@ -86,8 +86,8 @@ function RUI.Util.CreateUnitFrame (unitID, powerBarHeight, powerBarTypeOverride)
 	function UnitFrame.PowerBar:Update()
 		self.powerType = 0
 		self.powerToken = "MANA"
+		local powerType, powerToken, r, g, b = UnitPowerType(unitID)
 		if powerBarTypeOverride == nil then
-			local powerType, powerToken, r, g, b = UnitPowerType(unitID)
 			self.powerType = powerType
 			self.powerToken = powerToken
 		end

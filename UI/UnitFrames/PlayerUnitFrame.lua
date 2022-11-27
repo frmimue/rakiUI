@@ -1,5 +1,8 @@
 local name, RUI = ...
 
+ComboPointPlayerFrame:SetScript("OnEvent", nil);
+ComboPointPlayerFrame:Hide();
+
 PlayerFrame:SetScript("OnEvent", nil);
 PlayerFrame:Hide();
 

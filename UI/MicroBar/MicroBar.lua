@@ -7,51 +7,74 @@ RUI.MicroButtonBar:SetHeight(CharacterMicroButton:GetHeight())
 RUI.MicroButtonBar:SetScale(MicroButtonAndBagsBar:GetScale())
 RUI.MicroButtonBar:Show()
 
-CharacterMicroButton:SetParent(RUI.MicroButtonBar)
-CharacterMicroButton:ClearAllPoints()
-CharacterMicroButton:SetPoint("BOTTOMLEFT", RUI.MicroButtonBar, "BOTTOMLEFT")
+local myUpdateMicroButtonsParent = UpdateMicroButtonsParent
+local myMoveMicroButtons = MoveMicroButtons
+-- if parent == MicroButtonAndBagsBar or parent == OverrideActionBarMixin then
+function UpdateMicroButtonsParent(parent)
+    if parent == MicroButtonAndBagsBar then
+        myUpdateMicroButtonsParent(RUI.MicroButtonBar)
+        return
+    end
+    myUpdateMicroButtonsParent(parent)
+end
 
-SpellbookMicroButton:SetParent(RUI.MicroButtonBar)
-SpellbookMicroButton:ClearAllPoints()
-SpellbookMicroButton:SetPoint("BOTTOMLEFT", CharacterMicroButton, "BOTTOMRIGHT", 1, 0)
+-- if anchorTo == MicroButtonAndBagsBar or anchorTo == OverrideActionBarMixin then
+function MoveMicroButtons(anchor, anchorTo, relAnchor, x, y, isStacked)
+    if anchorTo == MicroButtonAndBagsBar then
+        myMoveMicroButtons("BOTTOMLEFT", RUI.MicroButtonBar, "BOTTOMLEFT", 0, 0, isStacked)
+        return
+    end
+    myMoveMicroButtons(anchor, anchorTo, relAnchor, x, y, isStacked)
+end
 
-TalentMicroButton:SetParent(RUI.MicroButtonBar)
-TalentMicroButton:ClearAllPoints()
-TalentMicroButton:SetPoint("BOTTOMLEFT", SpellbookMicroButton, "BOTTOMRIGHT", 1, 0)
-
-AchievementMicroButton:SetParent(RUI.MicroButtonBar)
-AchievementMicroButton:ClearAllPoints()
-AchievementMicroButton:SetPoint("BOTTOMLEFT", TalentMicroButton, "BOTTOMRIGHT", 1, 0)
-
-QuestLogMicroButton:SetParent(RUI.MicroButtonBar)
-QuestLogMicroButton:ClearAllPoints()
-QuestLogMicroButton:SetPoint("BOTTOMLEFT", AchievementMicroButton, "BOTTOMRIGHT", 1, 0)
-
-GuildMicroButton:SetParent(RUI.MicroButtonBar)
-GuildMicroButton:ClearAllPoints()
-GuildMicroButton:SetPoint("BOTTOMLEFT", QuestLogMicroButton, "BOTTOMRIGHT", 1, 0)
-
-LFDMicroButton:SetParent(RUI.MicroButtonBar)
-LFDMicroButton:ClearAllPoints()
-LFDMicroButton:SetPoint("BOTTOMLEFT", GuildMicroButton, "BOTTOMRIGHT", 1, 0)
-
-CollectionsMicroButton:SetParent(RUI.MicroButtonBar)
-CollectionsMicroButton:ClearAllPoints()
-CollectionsMicroButton:SetPoint("BOTTOMLEFT", LFDMicroButton, "BOTTOMRIGHT", 1, 0)
-
-EJMicroButton:SetParent(RUI.MicroButtonBar)
-EJMicroButton:ClearAllPoints()
-EJMicroButton:SetPoint("BOTTOMLEFT", CollectionsMicroButton, "BOTTOMRIGHT", 1, 0)
-
-MainMenuMicroButton:SetParent(RUI.MicroButtonBar)
-MainMenuMicroButton:ClearAllPoints()
-MainMenuMicroButton:SetPoint("BOTTOMLEFT", EJMicroButton, "BOTTOMRIGHT", 1, 0)
-
-QueueStatusButton:SetParent(RUI.MicroButtonBar)
-QueueStatusButton:ClearAllPoints()
-QueueStatusButton:SetPoint("LEFT", MainMenuMicroButton, "RIGHT", 1, 0)
+UpdateMicroButtonsParent(RUI.MicroButtonBar)
+MoveMicroButtons("BOTTOMLEFT", RUI.MicroButtonBar, "BOTTOMLEFT", 0, 0, false)
 
 MicroButtonAndBagsBar:Hide()
+
+-- CharacterMicroButton:SetParent(RUI.MicroButtonBar)
+-- CharacterMicroButton:ClearAllPoints()
+-- CharacterMicroButton:SetPoint("BOTTOMLEFT", RUI.MicroButtonBar, "BOTTOMLEFT")
+
+-- SpellbookMicroButton:SetParent(RUI.MicroButtonBar)
+-- SpellbookMicroButton:ClearAllPoints()
+-- SpellbookMicroButton:SetPoint("BOTTOMLEFT", CharacterMicroButton, "BOTTOMRIGHT", 1, 0)
+
+-- TalentMicroButton:SetParent(RUI.MicroButtonBar)
+-- TalentMicroButton:ClearAllPoints()
+-- TalentMicroButton:SetPoint("BOTTOMLEFT", SpellbookMicroButton, "BOTTOMRIGHT", 1, 0)
+
+-- AchievementMicroButton:SetParent(RUI.MicroButtonBar)
+-- AchievementMicroButton:ClearAllPoints()
+-- AchievementMicroButton:SetPoint("BOTTOMLEFT", TalentMicroButton, "BOTTOMRIGHT", 1, 0)
+
+-- QuestLogMicroButton:SetParent(RUI.MicroButtonBar)
+-- QuestLogMicroButton:ClearAllPoints()
+-- QuestLogMicroButton:SetPoint("BOTTOMLEFT", AchievementMicroButton, "BOTTOMRIGHT", 1, 0)
+
+-- GuildMicroButton:SetParent(RUI.MicroButtonBar)
+-- GuildMicroButton:ClearAllPoints()
+-- GuildMicroButton:SetPoint("BOTTOMLEFT", QuestLogMicroButton, "BOTTOMRIGHT", 1, 0)
+
+-- LFDMicroButton:SetParent(RUI.MicroButtonBar)
+-- LFDMicroButton:ClearAllPoints()
+-- LFDMicroButton:SetPoint("BOTTOMLEFT", GuildMicroButton, "BOTTOMRIGHT", 1, 0)
+
+-- CollectionsMicroButton:SetParent(RUI.MicroButtonBar)
+-- CollectionsMicroButton:ClearAllPoints()
+-- CollectionsMicroButton:SetPoint("BOTTOMLEFT", LFDMicroButton, "BOTTOMRIGHT", 1, 0)
+
+-- EJMicroButton:SetParent(RUI.MicroButtonBar)
+-- EJMicroButton:ClearAllPoints()
+-- EJMicroButton:SetPoint("BOTTOMLEFT", CollectionsMicroButton, "BOTTOMRIGHT", 1, 0)
+
+-- MainMenuMicroButton:SetParent(RUI.MicroButtonBar)
+-- MainMenuMicroButton:ClearAllPoints()
+-- MainMenuMicroButton:SetPoint("BOTTOMLEFT", EJMicroButton, "BOTTOMRIGHT", 1, 0)
+
+-- QueueStatusButton:SetParent(RUI.MicroButtonBar)
+-- QueueStatusButton:ClearAllPoints()
+-- QueueStatusButton:SetPoint("LEFT", MainMenuMicroButton, "RIGHT", 1, 0)
 
 -- RUI.MicroButtonBar.Background = CreateFrame("Frame", nil, RUI.MicroButtonBar, BackdropTemplateMixin and "BackdropTemplate")
 -- RUI.MicroButtonBar.Background:SetPoint("RIGHT", "MainMenuMicroButton", "RIGHT", 8, 0)
